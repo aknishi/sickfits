@@ -59,7 +59,7 @@ class Page extends React.Component {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Header />
+            <Header />
           <Inner>
             {this.props.children}
           </Inner>
