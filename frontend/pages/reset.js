@@ -7,4 +7,4 @@ const Sell = props => (
   </div>
 );
 
-export default Sell
+export default Sell;
