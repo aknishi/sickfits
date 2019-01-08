@@ -174,7 +174,7 @@ const Mutations = {
   async updatePermissions(parent, args, ctx, info) {
     // 1. Check if logged in
     if(!ctx.request.userId) {
-      throw new Error('You must be logged in!')
+      throw new Error('You must be logged in!');
     }
     // 2. Query the current user
     const currentUser = await ctx.db.query.user(
@@ -195,6 +195,44 @@ const Mutations = {
           }
         },
         where: { id: args.userId },
+      },
+      info
+    );
+  },
+  async addToCart(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    // 1. Make sure they are signed in
+    if (!userId) {
+      throw new Error('You must be logged in!');
+    }
+    // 2. Query the users current cart
+    const [existingCartItem] = await ctx.db.query.cartItems({
+      where: {
+        user: { id: userId },
+        item: { id: args.id },
+      }
+    });
+    // 3. Check if item is already in cart and increment by 1 if it is
+    if(existingCartItem) {
+      console.log('This item is already in the cart');
+      return ctx.db.mutation.updateCartItem(
+        {
+          where: { id: existingCartItem.id },
+          data: { quantity: existingCartItem.quantity + 1 },
+        }, info
+      );
+    }
+    // 4. Add it if it's not
+    return ctx.db.mutation.createCartItem(
+      {
+        data: {
+          user: {
+            connect: { id: userId },
+          },
+          item: {
+            connect: { id: args.id },
+          }
+        }
       },
       info
     );
