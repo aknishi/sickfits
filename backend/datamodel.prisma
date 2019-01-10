@@ -36,3 +36,26 @@ type CartItem {
   item: Item
   user: User!
 }
+
+# Copy item properties instead of making object relationship in case item propeties change in the future (i.e. price was higher but old order should show old price)
+
+type OrderItem {
+  id: ID! @unique
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  price: Int!
+  quantity: Int! @default(value: "1")
+  user: User
+}
+
+type Order {
+  id: ID! @unique
+  items: [OrderItem!]!
+  total: Int!
+  user: User!
+  charge: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
