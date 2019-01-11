@@ -53,25 +53,24 @@ class CreateItem extends Component {
       body: data
     });
     const file = await res.json();
-    console.log(file);
     this.setState({
       image: file.secure_url,
       largeImage: file.eager[0].secure_url
     })
   }
 
-
   render() {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
         { (createItem, { loading, error }) => (
-          <Form onSubmit={async (e) => {
+          <Form
+            data-test="form"
+            onSubmit={async (e) => {
             // stop the form from submitting
             e.preventDefault();
             // call the mutation
             const res = await createItem();
             // reroute to the single item page
-            console.log(res);
             Router.push({
               pathname: '/item',
               query: { id: res.data.createItem.id },
