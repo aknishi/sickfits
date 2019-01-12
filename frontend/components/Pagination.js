@@ -42,7 +42,7 @@ const Pagination = props => (
           <p>
             Page {page} of
             <span className="total-pages">
-              {pages}
+              {` ${pages}`}
             </span>
           </p>
           <p>{count} items total</p>
