@@ -5,6 +5,13 @@ import Router from 'next/router';
 import Form from './styles/Form';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
+import styled from 'styled-components';
+import CurrencyInput from 'react-currency-input';
+
+const StyledForm = styled.div`
+  width: 500px;
+  margin: auto;
+`;
 
 const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
@@ -42,6 +49,12 @@ class CreateItem extends Component {
     this.setState({ [name]: val });
   };
 
+  handlePriceChange = (event, maskedvalue, floatvalue) => {
+    console.log((maskedvalue));
+    // const val = parseFloat(maskedvalue);
+    // this.setState({ [price]: val });
+  };
+
   uploadFile = async e => {
     const files = e.target.files;
     const data = new FormData();
@@ -63,70 +76,71 @@ class CreateItem extends Component {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
         { (createItem, { loading, error }) => (
-          <Form
-            data-test="form"
-            onSubmit={async (e) => {
-            // stop the form from submitting
-            e.preventDefault();
-            // call the mutation
-            const res = await createItem();
-            // reroute to the single item page
-            Router.push({
-              pathname: '/item',
-              query: { id: res.data.createItem.id },
-            });
-          }}>
-            <Error error={error} />
-            <fieldset disabled={loading} aria-busy={loading}>
-              <label htmlFor="file">
-                Image
-                <input
-                  type="file"
-                  id="file"
-                  name="file"
-                  placeholder="Upload an image"
-                  required
-                  onChange={this.uploadFile}
-                />
-                {this.state.image && <img width="200" src={this.state.image} alt="Upload Preview" />}
-              </label>
-              <label htmlFor="title">
-                Title
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  placeholder="Title"
-                  required
-                  value={this.state.title}
-                  onChange={this.handleChange}/>
-              </label>
+          <StyledForm>
+            <Form
+              data-test="form"
+              onSubmit={async (e) => {
+              // stop the form from submitting
+              e.preventDefault();
+              // call the mutation
+              const res = await createItem();
+              // reroute to the single item page
+              Router.push({
+                pathname: '/item',
+                query: { id: res.data.createItem.id },
+              });
+            }}>
+              <Error error={error} />
+              <fieldset disabled={loading} aria-busy={loading}>
+                <label htmlFor="file">
+                  Image
+                  <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    placeholder="Upload an image"
+                    required
+                    onChange={this.uploadFile}
+                  />
+                  {this.state.image && <img width="200" src={this.state.image} alt="Upload Preview" />}
+                </label>
+                <label htmlFor="title">
+                  Title
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Title"
+                    required
+                    value={this.state.title}
+                    onChange={this.handleChange}/>
+                </label>
 
-              <label htmlFor="price">
-                Price
-                <input
-                  type="number"
-                  id="price"
-                  name="price"
-                  placeholder="Price"
-                  required
-                  value={this.state.price}
-                  onChange={this.handleChange}/>
-              </label>
+                <label htmlFor="price">
+                  Price
+                  <CurrencyInput
+                    id="price"
+                    name="price"
+                    placeholder="$0.00"
+                    required
+                    value={this.state.price}
+                    onChange={this.handlePriceChange}/>
+                </label>
 
-              <label htmlFor="description">
-                Description
-                <textarea
-                  id="description"
-                  name="description"
-                  placeholder="Enter a description"
-                  required
-                  value={this.state.description}
-                  onChange={this.handleChange}/>
-              </label>
-              <button type="submit">Submit</button>
-            </fieldset>
-          </Form>
+                <label htmlFor="description">
+                  Description
+                  <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Enter a description"
+                    required
+                    value={this.state.description}
+                    onChange={this.handleChange}/>
+                </label>
+                <button type="submit">Submit</button>
+              </fieldset>
+            </Form>
+          </StyledForm>
         )}
       </Mutation>
     );

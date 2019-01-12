@@ -4,15 +4,6 @@ import styled from 'styled-components';
 import User from './User';
 import ProfileStyles from './styles/ProfileStyles';
 
-const StyledButton = styled.a`
-  padding: 0.5rem 1rem;
-  background: ${props => props.theme.red};
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-`;
-
 class MyProfile extends React.Component {
   constructor(props) {
     super(props)
@@ -22,7 +13,7 @@ class MyProfile extends React.Component {
     if(isAdmin) {
       return (
         <Link href="/permissions">
-          <StyledButton>Manage Users Permissions</StyledButton>
+          <button>Manage Users Permissions</button>
         </Link>
       )
     }

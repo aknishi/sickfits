@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ProfileStyles = styled.div`
-  max-width: 1000px;
+  max-width: 400px;
   margin: 0 auto;
   border: 1px solid ${props => props.theme.offWhite};
   box-shadow: ${props => props.theme.bs};
@@ -19,6 +19,16 @@ const ProfileStyles = styled.div`
         text-align: right;
       }
     }
+  }
+  button {
+    padding: 0.5rem 1rem;
+    background: ${props => props.theme.red};
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
   }
 `;
 export default ProfileStyles;

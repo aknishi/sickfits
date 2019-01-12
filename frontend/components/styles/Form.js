@@ -26,13 +26,18 @@ const Form = styled.form`
   textarea,
   select {
     width: 100%;
+    height: 3rem;
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.4rem;
+    resize: none;
     border: 1px solid black;
     &:focus {
       outline: 0;
       border-color: ${props => props.theme.red};
     }
+  }
+  textarea {
+    height: 6rem;
   }
   button,
   input[type='submit'] {
