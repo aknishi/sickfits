@@ -1,6 +1,6 @@
 import { Query } from 'react-apollo';
 import { CURRENT_USER_QUERY } from './User';
-import Signin from './Signin';
+import Profile from './MyProfile';
 import styled from 'styled-components';
 
 const StyledError = styled.h3`
@@ -11,17 +11,17 @@ const StyledError = styled.h3`
   color: red;
 `;
 
-const PleaseSignIn = props => (
+const OnlyAdmin = props => (
   <Query query={CURRENT_USER_QUERY}>
-    {({data, loading}) => {
-      if(loading) return <p>Loading...</p>
-      if(!data.me) {
+    {({ data, loading }) => {
+      if (loading) return <p>Loading...</p>
+      if (!data.me.permissions.includes("ADMIN")) {
         return (
           <div>
             <StyledError>
-              Please Sign In before continuing
+              You can't Access that page
             </StyledError>
-            <Signin />
+            <Profile />
           </div>
         );
       }
@@ -30,4 +30,4 @@ const PleaseSignIn = props => (
   </Query>
 );
 
-export default PleaseSignIn;
+export default OnlyAdmin;

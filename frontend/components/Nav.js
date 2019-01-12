@@ -13,17 +13,17 @@ const Nav = () => (
       <Link href="/items">
         <a>Shop</a>
       </Link>
+      <Link href="/sell">
+        <a>Sell</a>
+      </Link>
+      <Link href="/orders">
+        <a>Orders</a>
+      </Link>
+      <Link href="/account">
+        <a>Account</a>
+      </Link>
       { me && (
           <>
-            <Link href="/sell">
-              <a>Sell</a>
-            </Link>
-            <Link href="/orders">
-              <a>Orders</a>
-            </Link>
-            <Link href="/me">
-              <a>Account</a>
-            </Link>
             <Signout />
             <Mutation mutation={TOGGLE_CART_MUTATION}>
             {(toggleCart) => (
@@ -36,9 +36,14 @@ const Nav = () => (
           </>
       )}
       { !me && (
-          <Link href="/signup">
-            <a>Sign In</a>
-          </Link>
+          <>
+            <Link href="/signup">
+              <a>Sign Up</a>
+            </Link>
+            <Link href="/signin">
+              <a>Log In</a>
+            </Link>
+          </>
       )}
 
     </NavStyles>
