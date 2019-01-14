@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Link from 'next/link';
+import Router from 'next/router';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
@@ -14,6 +15,12 @@ const StyledSignup = styled.div`
     text-decoration: underline;
   }
 `;
+
+function routeToAccount() {
+  Router.push({
+    pathname: '/account',
+  });
+};
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION($email: String!, $name: String!, $password: String! ) {
@@ -51,6 +58,7 @@ class Signup extends Component {
                   e.preventDefault();
                   await signup();
                   this.setState({ name: '', email: '', password: ''});
+                  routeToAccount();
                 }}
                 >
                 <fieldset disabled={loading} aria-busy={loading}>

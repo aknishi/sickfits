@@ -30,7 +30,7 @@ const Item = styled.div`
     & > * {
       background: white;
       border: 0;
-      font-size: 1rem;
+      font-size: 1.2rem;
       padding: 1rem;
     }
   }

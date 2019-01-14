@@ -15,30 +15,37 @@ const OrderItemStyles = styled.li`
   .images {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: repeat(6, 1fr);
+    justify-items: start;
     margin-top: 1rem;
     img {
-      height: 200px;
+      height: 150px;
       object-fit: contain;
       width: 100%;
     }
   }
   .order-meta {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    grid-template-columns: 4fr 1fr;
     display: grid;
     grid-gap: 1rem;
-    text-align: center;
+    /* text-align: center; */
     & > * {
       margin: 0;
-      background: rgba(0, 0, 0, 0.03);
-      padding: 1rem 0;
+      /* background: rgba(0, 0, 0, 0.03); */
     }
-    strong {
-      display: block;
-      margin-bottom: 1rem;
+
+    p {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: normal;
+    }
+    h4 {
+      text-align: right;
+      font-size: 1.4rem;
     }
   }
+
 `;
 
 export default OrderItemStyles;
