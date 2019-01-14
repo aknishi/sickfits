@@ -1,5 +1,5 @@
-# source: https://sick-fits-prod-861a83d612.herokuapp.com/sick-fits-prod/prod
-# timestamp: Fri Jan 11 2019 15:20:35 GMT-0800 (PST)
+# source: https://us1.prisma.sh/adrian-kawanishi/sickfits/dev
+# timestamp: Mon Jan 14 2019 10:32:33 GMT-0800 (PST)
 
 type AggregateCartItem {
   count: Int!
@@ -213,6 +213,7 @@ input CartItemUpdateManyMutationInput {
 input CartItemUpdateManyWithoutUserInput {
   create: [CartItemCreateWithoutUserInput!]
   connect: [CartItemWhereUniqueInput!]
+  set: [CartItemWhereUniqueInput!]
   disconnect: [CartItemWhereUniqueInput!]
   delete: [CartItemWhereUniqueInput!]
   update: [CartItemUpdateWithWhereUniqueWithoutUserInput!]
@@ -329,7 +330,7 @@ type Item implements Node {
   description: String!
   image: String
   largeImage: String
-  price: Int!
+  price: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
@@ -350,7 +351,7 @@ input ItemCreateInput {
   description: String!
   image: String
   largeImage: String
-  price: Int!
+  price: Float!
   user: UserCreateOneInput!
 }
 
@@ -393,7 +394,7 @@ type ItemPreviousValues {
   description: String!
   image: String
   largeImage: String
-  price: Int!
+  price: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -442,7 +443,7 @@ input ItemUpdateDataInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
   user: UserUpdateOneRequiredInput
 }
 
@@ -451,7 +452,7 @@ input ItemUpdateInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
   user: UserUpdateOneRequiredInput
 }
 
@@ -460,7 +461,7 @@ input ItemUpdateManyMutationInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
 }
 
 input ItemUpdateOneInput {
@@ -686,28 +687,28 @@ input ItemWhereInput {
 
   """All values not ending with the given string."""
   largeImage_not_ends_with: String
-  price: Int
+  price: Float
 
   """All values that are not equal to given value."""
-  price_not: Int
+  price_not: Float
 
   """All values that are contained in given list."""
-  price_in: [Int!]
+  price_in: [Float!]
 
   """All values that are not contained in given list."""
-  price_not_in: [Int!]
+  price_not_in: [Float!]
 
   """All values less than the given value."""
-  price_lt: Int
+  price_lt: Float
 
   """All values less than or equal the given value."""
-  price_lte: Int
+  price_lte: Float
 
   """All values greater than the given value."""
-  price_gt: Int
+  price_gt: Float
 
   """All values greater than or equal the given value."""
-  price_gte: Int
+  price_gte: Float
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -813,7 +814,7 @@ interface Node {
 type Order implements Node {
   id: ID!
   items(where: OrderItemWhereInput, orderBy: OrderItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [OrderItem!]
-  total: Int!
+  total: Float!
   user: User!
   charge: String!
   createdAt: DateTime!
@@ -831,7 +832,7 @@ type OrderConnection {
 }
 
 input OrderCreateInput {
-  total: Int!
+  total: Float!
   charge: String!
   items: OrderItemCreateManyInput
   user: UserCreateOneInput!
@@ -852,7 +853,7 @@ type OrderItem implements Node {
   description: String!
   image: String!
   largeImage: String!
-  price: Int!
+  price: Float!
   quantity: Int!
   user: User
 }
@@ -872,7 +873,7 @@ input OrderItemCreateInput {
   description: String!
   image: String!
   largeImage: String!
-  price: Int!
+  price: Float!
   quantity: Int
   user: UserCreateOneInput
 }
@@ -918,7 +919,7 @@ type OrderItemPreviousValues {
   description: String!
   image: String!
   largeImage: String!
-  price: Int!
+  price: Float!
   quantity: Int!
 }
 
@@ -1131,28 +1132,28 @@ input OrderItemScalarWhereInput {
 
   """All values not ending with the given string."""
   largeImage_not_ends_with: String
-  price: Int
+  price: Float
 
   """All values that are not equal to given value."""
-  price_not: Int
+  price_not: Float
 
   """All values that are contained in given list."""
-  price_in: [Int!]
+  price_in: [Float!]
 
   """All values that are not contained in given list."""
-  price_not_in: [Int!]
+  price_not_in: [Float!]
 
   """All values less than the given value."""
-  price_lt: Int
+  price_lt: Float
 
   """All values less than or equal the given value."""
-  price_lte: Int
+  price_lte: Float
 
   """All values greater than the given value."""
-  price_gt: Int
+  price_gt: Float
 
   """All values greater than or equal the given value."""
-  price_gte: Int
+  price_gte: Float
   quantity: Int
 
   """All values that are not equal to given value."""
@@ -1221,7 +1222,7 @@ input OrderItemUpdateDataInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
   quantity: Int
   user: UserUpdateOneInput
 }
@@ -1231,7 +1232,7 @@ input OrderItemUpdateInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
   quantity: Int
   user: UserUpdateOneInput
 }
@@ -1241,13 +1242,14 @@ input OrderItemUpdateManyDataInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
   quantity: Int
 }
 
 input OrderItemUpdateManyInput {
   create: [OrderItemCreateInput!]
   connect: [OrderItemWhereUniqueInput!]
+  set: [OrderItemWhereUniqueInput!]
   disconnect: [OrderItemWhereUniqueInput!]
   delete: [OrderItemWhereUniqueInput!]
   update: [OrderItemUpdateWithWhereUniqueNestedInput!]
@@ -1261,7 +1263,7 @@ input OrderItemUpdateManyMutationInput {
   description: String
   image: String
   largeImage: String
-  price: Int
+  price: Float
   quantity: Int
 }
 
@@ -1490,28 +1492,28 @@ input OrderItemWhereInput {
 
   """All values not ending with the given string."""
   largeImage_not_ends_with: String
-  price: Int
+  price: Float
 
   """All values that are not equal to given value."""
-  price_not: Int
+  price_not: Float
 
   """All values that are contained in given list."""
-  price_in: [Int!]
+  price_in: [Float!]
 
   """All values that are not contained in given list."""
-  price_not_in: [Int!]
+  price_not_in: [Float!]
 
   """All values less than the given value."""
-  price_lt: Int
+  price_lt: Float
 
   """All values less than or equal the given value."""
-  price_lte: Int
+  price_lte: Float
 
   """All values greater than the given value."""
-  price_gt: Int
+  price_gt: Float
 
   """All values greater than or equal the given value."""
-  price_gte: Int
+  price_gte: Float
   quantity: Int
 
   """All values that are not equal to given value."""
@@ -1556,7 +1558,7 @@ enum OrderOrderByInput {
 
 type OrderPreviousValues {
   id: ID!
-  total: Int!
+  total: Float!
   charge: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -1602,14 +1604,14 @@ input OrderSubscriptionWhereInput {
 }
 
 input OrderUpdateInput {
-  total: Int
+  total: Float
   charge: String
   items: OrderItemUpdateManyInput
   user: UserUpdateOneRequiredInput
 }
 
 input OrderUpdateManyMutationInput {
-  total: Int
+  total: Float
   charge: String
 }
 
@@ -1662,28 +1664,28 @@ input OrderWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  total: Int
+  total: Float
 
   """All values that are not equal to given value."""
-  total_not: Int
+  total_not: Float
 
   """All values that are contained in given list."""
-  total_in: [Int!]
+  total_in: [Float!]
 
   """All values that are not contained in given list."""
-  total_not_in: [Int!]
+  total_not_in: [Float!]
 
   """All values less than the given value."""
-  total_lt: Int
+  total_lt: Float
 
   """All values less than or equal the given value."""
-  total_lte: Int
+  total_lte: Float
 
   """All values greater than the given value."""
-  total_gt: Int
+  total_gt: Float
 
   """All values greater than or equal the given value."""
-  total_gte: Int
+  total_gte: Float
   charge: String
 
   """All values that are not equal to given value."""

@@ -17,7 +17,7 @@ const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
     $title: String!
     $description: String!
-    $price: Int!
+    $price: Float!
     $image: String
     $largeImage: String
   ) {
@@ -40,7 +40,7 @@ class CreateItem extends Component {
     description: '',
     image: '',
     largeImage: '',
-    price: 0,
+    price: 0.00,
   }
 
   handleChange = e => {
@@ -50,9 +50,7 @@ class CreateItem extends Component {
   };
 
   handlePriceChange = (event, maskedvalue, floatvalue) => {
-    console.log((maskedvalue));
-    // const val = parseFloat(maskedvalue);
-    // this.setState({ [price]: val });
+    this.setState({ price: maskedvalue });
   };
 
   uploadFile = async e => {
@@ -122,6 +120,7 @@ class CreateItem extends Component {
                     id="price"
                     name="price"
                     placeholder="$0.00"
+                    prefix="$"
                     required
                     value={this.state.price}
                     onChange={this.handlePriceChange}/>

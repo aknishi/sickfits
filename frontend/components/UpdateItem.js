@@ -5,6 +5,7 @@ import Router from 'next/router';
 import Form from './styles/Form';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
+import CurrencyInput from 'react-currency-input';
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
@@ -22,7 +23,7 @@ const UPDATE_ITEM_MUTATION = gql`
     $id: ID!
     $title: String
     $description: String
-    $price: Int
+    $price: Float
   ) {
     updateItem(
       id: $id
@@ -48,6 +49,10 @@ class UpdateItem extends Component {
     this.setState({ [name]: val });
   };
 
+  // handlePriceChange = (event, maskedvalue, floatvalue) => {
+  //   this.setState({ price: maskedvalue });
+  // };
+
   updateItem = async (e, updateItemMutation) => {
     e.preventDefault();
     const res = await updateItemMutation({
@@ -56,7 +61,11 @@ class UpdateItem extends Component {
         ...this.state,
       }
     });
-    console.log('Updated')
+    // reroute to the single item page
+    Router.push({
+      pathname: '/item',
+      query: { id: res.data.updateItem.id },
+    });
   };
 
   render() {
@@ -88,13 +97,11 @@ class UpdateItem extends Component {
                     <label htmlFor="price">
                       Price
                       <input
-                        type="number"
                         id="price"
                         name="price"
-                        placeholder="Price"
                         required
                         defaultValue={data.item.price}
-                        onChange={this.handleChange}/>
+                        onChange={this.handleChange} />
                     </label>
 
                     <label htmlFor="description">

@@ -59,7 +59,7 @@ class TakeMyMoney extends React.Component {
               >
                 {(createOrder) => (
                   <StripeCheckout
-                    amount={calcTotalPrice(me.cart)}
+                    amount={Math.round(calcTotalPrice(me.cart)*100)}
                     name="Sick Fits"
                     description={`Order of ${totalItems(me.cart)} items`}
                     image={me.cart.length && me.cart[0].item && me.cart[0].item.image}
