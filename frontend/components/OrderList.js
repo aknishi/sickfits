@@ -81,3 +81,4 @@ class OrderList extends React.Component {
 }
 
 export default OrderList;
+export { USER_ORDERS_QUERY };

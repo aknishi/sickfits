@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import Error from './ErrorMessage';
 import User, { CURRENT_USER_QUERY } from './User';
+import { USER_ORDERS_QUERY } from './OrderList';
 
 const CREATE_ORDER_MUTATION = gql`
   mutation createOrder($token: String!) {
@@ -55,7 +56,7 @@ class TakeMyMoney extends React.Component {
             return(
               <Mutation
               mutation={CREATE_ORDER_MUTATION}
-              refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+                refetchQueries={[{ query: CURRENT_USER_QUERY }, { query: USER_ORDERS_QUERY }]}
               >
                 {(createOrder) => (
                   <StripeCheckout

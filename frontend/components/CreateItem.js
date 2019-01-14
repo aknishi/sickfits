@@ -7,6 +7,7 @@ import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 import styled from 'styled-components';
 import CurrencyInput from 'react-currency-input';
+import { ALL_ITEMS_QUERY } from './Items';
 
 const StyledForm = styled.div`
   width: 500px;
@@ -72,7 +73,9 @@ class CreateItem extends Component {
 
   render() {
     return (
-      <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
+      <Mutation mutation={CREATE_ITEM_MUTATION}
+      variables={this.state}
+        refetchQueries={[{ query: ALL_ITEMS_QUERY }]}>
         { (createItem, { loading, error }) => (
           <StyledForm>
             <Form

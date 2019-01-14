@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/adrian-kawanishi/sick-fits/dev
-# timestamp: Mon Jan 14 2019 13:03:55 GMT-0800 (PST)
+# timestamp: Mon Jan 14 2019 14:49:33 GMT-0800 (PST)
 
 type AggregateCartItem {
   count: Int!
