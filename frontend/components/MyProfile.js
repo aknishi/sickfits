@@ -20,7 +20,6 @@ class MyProfile extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     let isAdmin = false;
     return(
       <User>

@@ -285,9 +285,8 @@ const Mutations = {
       }`
     );
     // 2. recalculate total for price
-    console.log(user.cart);
     const amount = user.cart.reduce((tally, cartItem) => Math.round(tally + cartItem.item.price * cartItem.quantity * 100), 0);
-    console.log(`Going to charge for a total of ${Math.round(amount /100)}`);
+    // console.log(`Going to charge for a total of ${Math.round(amount /100)}`);
     // 3. create the stripe charge (turn token into $$$)
     const charge = await stripe.charges.create({
       amount,

@@ -24,7 +24,6 @@ class SignupPage extends React.Component {
   }
   toggleRequestReset = async () => {
     await this.setState({ showRequestReset: true})
-    console.log(this.state);
   }
 
   render() {
