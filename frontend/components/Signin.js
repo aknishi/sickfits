@@ -13,9 +13,9 @@ const StyledSignin = styled.div`
   margin: auto;
 `;
 
-function routeToShop() {
+function routeToHome() {
   Router.push({
-    pathname: '/items',
+    pathname: '/',
   });
 };
 
@@ -55,7 +55,7 @@ class Signin extends Component {
                   e.preventDefault();
                   await signin();
                   this.setState({ name: '', email: '', password: '' });
-                  routeToShop();
+                  routeToHome();
                 }}
               >
                 <fieldset disabled={loading} aria-busy={loading}>
