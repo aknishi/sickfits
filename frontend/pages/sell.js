@@ -1,7 +1,7 @@
 import CreateItem from '../components/CreateItem';
 import PleaseSignIn from '../components/PleaseSignIn';
 
-const Sell = props => (
+const SellPage = props => (
   <div>
     <PleaseSignIn>
       <CreateItem />
@@ -9,4 +9,4 @@ const Sell = props => (
   </div>
 );
 
-export default Sell
+export default SellPage;
