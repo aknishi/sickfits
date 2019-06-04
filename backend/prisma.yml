@@ -3,7 +3,8 @@
 #endpoint: https://us1.prisma.sh/adrian-kawanishi/sick-fits/dev
 #endpoint: https://sick-fits-prod-861a83d612.herokuapp.com/sick-fits-prod/prod
 #endpoint: https://us1.prisma.sh/adrian-kawanishi/sick-fits/dev
-endpoint: https://sickfits-production-83a9c6891a.herokuapp.com/sick-fitws-prod/dev
+#endpoint: https://sickfits-production-83a9c6891a.herokuapp.com/sick-fitws-prod/dev
+endpoint: https://sickfits-production-83a9c6891a.herokuapp.com/sickfits-prod/prod
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
 hooks:
