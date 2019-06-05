@@ -33,8 +33,8 @@ const Pagination = props => (
           <Link
             prefetch
             href={{
-              pathname: 'items',
-              query: { page: page - 1},
+              pathname: 'shop',
+              query: { page: page - 1 },
             }}
           >
             <a className="prev" aria-disabled={page <= 1}>← Prev</a>
@@ -49,7 +49,7 @@ const Pagination = props => (
           <Link
             prefetch
             href={{
-              pathname: 'items',
+              pathname: 'shop',
               query: { page: page + 1 },
             }}
           >
