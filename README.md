@@ -1,4 +1,4 @@
-[SickFits demo link!](https://sickfits-next-prod1515.herokuapp.com/)
+[SickFits demo link!](https://sickfits-next-production1515.herokuapp.com/)
 
 # SICKFITS!
 
