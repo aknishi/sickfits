@@ -28,6 +28,7 @@ const Logo = styled.h1`
     color: white;
     text-transform: uppercase;
     text-decoration: none;
+    box-shadow: .1rem .1rem .5rem ${props => props.theme.black};
   }
   @media(max-width: 1300px) {
     margin: 0;
